@@ -27,6 +27,7 @@ public class SolDetailActivity extends AppCompatActivity {
     private List<SolData> sols;
     private int currentIndex;
     private GestureDetector gestureDetector;
+    private boolean isScrolling = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +58,31 @@ public class SolDetailActivity extends AppCompatActivity {
         gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                if (Math.abs(distanceY) > Math.abs(distanceX)) {
+                // Seuil minimum de déplacement pour déclencher la navigation
+                float minScrollDistance = 50;
+
+                if (!isScrolling && Math.abs(distanceY) > minScrollDistance) {
+                    isScrolling = true;
                     if (distanceY > 0) {
-                        navigateToNextSol();
-                    } else {
                         navigateToPreviousSol();
+                    } else {
+                        navigateToNextSol();
                     }
                 }
                 return true;
             }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+                isScrolling = false;
+            }
         });
 
-        View rootView = findViewById(android.R.id.content);
-        rootView.setOnTouchListener((v, event) -> {
+        View gestureDetectorView = findViewById(R.id.gestureDetectorView);
+        gestureDetectorView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                isScrolling = false;
+            }
             gestureDetector.onTouchEvent(event);
             return true;
         });

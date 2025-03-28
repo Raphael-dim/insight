@@ -40,6 +40,8 @@ public class SolAdapter extends RecyclerView.Adapter<SolAdapter.SolViewHolder> {
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), SolDetailActivity.class);
             intent.putExtra(SolDetailActivity.EXTRA_SOL_DATA, sol);
+            intent.putExtra(SolDetailActivity.EXTRA_SOLS_LIST, new ArrayList<>(sols));
+            intent.putExtra(SolDetailActivity.EXTRA_CURRENT_INDEX, position);
             v.getContext().startActivity(intent);
         });
     }
