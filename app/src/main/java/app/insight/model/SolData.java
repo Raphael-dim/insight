@@ -1,6 +1,8 @@
 package app.insight.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SolData implements Serializable {
     private String solKey;
@@ -12,9 +14,11 @@ public class SolData implements Serializable {
     private WindDirection mostCommonWindDirection;
     private String firstUTC;
     private String lastUTC;
+    private Map<Integer, WindDirectionData> windDirections;
 
     public SolData(String solKey) {
         this.solKey = solKey;
+        this.windDirections = new HashMap<>();
     }
 
     // Getters and setters
@@ -90,6 +94,14 @@ public class SolData implements Serializable {
         this.lastUTC = lastUTC;
     }
 
+    public Map<Integer, WindDirectionData> getWindDirections() {
+        return windDirections;
+    }
+
+    public void setWindDirections(Map<Integer, WindDirectionData> windDirections) {
+        this.windDirections = windDirections;
+    }
+
     public static class WeatherData implements Serializable {
         private static final long serialVersionUID = 1L;
         private double average;
@@ -131,6 +143,44 @@ public class SolData implements Serializable {
 
         public String getCompassPoint() {
             return compassPoint;
+        }
+    }
+
+    public static class WindDirectionData implements Serializable {
+        private static final long serialVersionUID = 1L;
+        private double compassDegrees;
+        private String compassPoint;
+        private double compassRight;
+        private double compassUp;
+        private int count;
+
+        public WindDirectionData(double compassDegrees, String compassPoint, double compassRight, double compassUp,
+                int count) {
+            this.compassDegrees = compassDegrees;
+            this.compassPoint = compassPoint;
+            this.compassRight = compassRight;
+            this.compassUp = compassUp;
+            this.count = count;
+        }
+
+        public double getCompassDegrees() {
+            return compassDegrees;
+        }
+
+        public String getCompassPoint() {
+            return compassPoint;
+        }
+
+        public double getCompassRight() {
+            return compassRight;
+        }
+
+        public double getCompassUp() {
+            return compassUp;
+        }
+
+        public int getCount() {
+            return count;
         }
     }
 }

@@ -91,6 +91,20 @@ public class HomeActivity extends AppCompatActivity {
                                 wdData.getDouble("compass_degrees"),
                                 wdData.getString("compass_point")));
 
+                        // Parse wind direction data
+                        org.json.JSONObject wdObject = solData.getJSONObject("WD");
+                        for (int j = 0; j < 16; j++) {
+                            if (wdObject.has(String.valueOf(j))) {
+                                org.json.JSONObject directionData = wdObject.getJSONObject(String.valueOf(j));
+                                sol.getWindDirections().put(j, new SolData.WindDirectionData(
+                                        directionData.getDouble("compass_degrees"),
+                                        directionData.getString("compass_point"),
+                                        directionData.getDouble("compass_right"),
+                                        directionData.getDouble("compass_up"),
+                                        directionData.getInt("ct")));
+                            }
+                        }
+
                         // Set UTC times
                         sol.setFirstUTC(solData.getString("First_UTC"));
                         sol.setLastUTC(solData.getString("Last_UTC"));

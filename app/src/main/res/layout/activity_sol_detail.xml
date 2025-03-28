@@ -41,49 +41,12 @@
             android:textSize="16sp"
             tools:text="Pression : avg: 644.32 min: 618.27 max: 672.83" />
 
-        <TextView
-            android:id="@+id/seasonTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            tools:text="Saison : Nord: winter Sud: summer" />
-
-        <TextView
-            android:id="@+id/windSpeedTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            tools:text="Vitesse du vent : avg: 5.5 min: 0.2 max: 15.7" />
-
-        <TextView
-            android:id="@+id/windDirectionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            tools:text="Direction du vent la plus fréquente : NW (315.0°)" />
-
-        <TextView
-            android:id="@+id/firstUTCTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            tools:text="Premier relevé : 2020-10-23T21:10:41Z" />
-
-        <TextView
-            android:id="@+id/lastUTCTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            tools:text="Dernier relevé : 2020-10-24T21:50:16Z" />
-
+        <app.insight.view.WindRoseView
+            android:id="@+id/windRoseView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
     </LinearLayout>
 </ScrollView> 
