@@ -2,4 +2,5 @@
     <string name="app_name">Insight</string>
     <string name="voir_l_historique">Voir l\'historique</string>
     <string name="quelle_m_t_o_sur_mars">Quelle météo sur Mars ?</string>
+    <string name="main_picture">main_picture</string>
 </resources>
