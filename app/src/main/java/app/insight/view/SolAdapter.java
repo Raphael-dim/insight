@@ -69,7 +69,8 @@ public class SolAdapter extends RecyclerView.Adapter<SolAdapter.SolViewHolder> {
         }
 
         public void bind(SolData sol) {
-            solNumberTextView.setText(itemView.getContext().getString(R.string.sol_number_format, sol.getSolKey()));
+            solNumberTextView.setText(itemView.getContext().getString(R.string.sol_number_format,
+                    Integer.parseInt(sol.getSolKey())));
             temperatureTextView.setText(String.format(
                     itemView.getContext().getString(R.string.temperature_format),
                     sol.getTemperature().getAverage(),
