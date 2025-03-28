@@ -3,4 +3,12 @@
     <string name="voir_l_historique">Voir l\'historique</string>
     <string name="quelle_m_t_o_sur_mars">Quelle météo sur Mars ?</string>
     <string name="main_picture">main_picture</string>
+     <string name="data_not_available">Données non disponibles</string>
+    <string name="temperature_na">Température : N/A</string>
+    <string name="pressure_na">Pression : N/A</string>
+    <string name="sol_number">Sol n°%1$d</string>
+    <string name="temperature_format">Température : avg: %.2f min: %.2f max: %.2f</string>
+     <string name="sol_number_format">Sol n°%1$d</string>
+    <string name="pressure_format">Pression : avg: %.2f min: %.2f max: %.2f</string>
+
 </resources>

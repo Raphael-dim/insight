@@ -104,23 +104,22 @@ public class SolDetailActivity extends AppCompatActivity {
 
     private void displaySolData(SolData solData) {
         if (solData == null) {
-            // Gérer le cas où solData est null
-            solNumberTextView.setText("Données non disponibles");
-            temperatureTextView.setText("Température : N/A");
-            pressureTextView.setText("Pression : N/A");
+            solNumberTextView.setText(R.string.data_not_available);
+            temperatureTextView.setText(R.string.temperature_na);
+            pressureTextView.setText(R.string.pressure_na);
             windRoseView.setWindValues(new float[16]);
             return;
         }
 
-        solNumberTextView.setText("Sol n°" + solData.getSolKey());
+        solNumberTextView.setText(getString(R.string.sol_number, Integer.parseInt(solData.getSolKey())));
 
-        String tempText = String.format("Température :\navg: %.2f\nmin: %.2f\nmax: %.2f",
+        String tempText = getString(R.string.temperature_format,
                 solData.getTemperature().getAverage(),
                 solData.getTemperature().getMin(),
                 solData.getTemperature().getMax());
         temperatureTextView.setText(tempText);
 
-        String pressureText = String.format("Pression :\navg: %.2f\nmin: %.2f\nmax: %.2f",
+        String pressureText = getString(R.string.pressure_format,
                 solData.getPressure().getAverage(),
                 solData.getPressure().getMin(),
                 solData.getPressure().getMax());
