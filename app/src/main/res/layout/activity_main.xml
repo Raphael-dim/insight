@@ -4,25 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    android:padding="38dp">
+    android:padding="100dp">
 
     <FrameLayout
         android:id="@+id/logoContainer"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/circle_shape"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher_foreground"
+            android:contentDescription="@string/main_picture"
             android:padding="16dp"
-            android:contentDescription="@string/main_picture"/>
+            android:src="@drawable/ic_launcher_foreground" />
 
     </FrameLayout>
 
@@ -30,25 +30,25 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/quelle_m_t_o_sur_mars"
         android:textColor="@android:color/white"
         android:textSize="24sp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/logoContainer"
+        app:layout_constraintBottom_toTopOf="@+id/buttonHistory"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/buttonHistory" />
+        app:layout_constraintTop_toBottomOf="@+id/logoContainer" />
 
     <Button
         android:id="@+id/buttonHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/voir_l_historique"
         android:backgroundTint="#D87C7C"
+        android:text="@string/voir_l_historique"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
