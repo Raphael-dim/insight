@@ -20,8 +20,7 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="24sp"
-            android:textStyle="bold"
-            tools:text="Sol n°474" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/temperatureTextView"
@@ -29,8 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            tools:text="Température : avg: -65.65 min: -93.99 max: -7.29" />
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/pressureTextView"
@@ -38,8 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            tools:text="Pression : avg: 644.32 min: 618.27 max: 672.83" />
+            android:textSize="16sp"/>
 
         <app.insight.view.WindRoseView
             android:id="@+id/windRoseView"
