@@ -2,6 +2,7 @@ package app.insight.activity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -124,7 +125,12 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onError(String error) {
-                // Gérer l'erreur ici
+                // Afficher un message d'erreur à l'utilisateur
+                runOnUiThread(() -> {
+                    Toast.makeText(HomeActivity.this,
+                            "Erreur lors du chargement des données : " + error,
+                            Toast.LENGTH_LONG).show();
+                });
             }
         });
     }

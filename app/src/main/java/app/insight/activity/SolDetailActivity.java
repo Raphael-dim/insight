@@ -103,6 +103,15 @@ public class SolDetailActivity extends AppCompatActivity {
     }
 
     private void displaySolData(SolData solData) {
+        if (solData == null) {
+            // Gérer le cas où solData est null
+            solNumberTextView.setText("Données non disponibles");
+            temperatureTextView.setText("Température : N/A");
+            pressureTextView.setText("Pression : N/A");
+            windRoseView.setWindValues(new float[16]);
+            return;
+        }
+
         solNumberTextView.setText("Sol n°" + solData.getSolKey());
 
         String tempText = String.format("Température :\navg: %.2f\nmin: %.2f\nmax: %.2f",
