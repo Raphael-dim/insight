@@ -1,5 +1,6 @@
 package app.insight.view;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.insight.R;
+import app.insight.activity.SolDetailActivity;
 import app.insight.model.SolData;
 
 public class SolAdapter extends RecyclerView.Adapter<SolAdapter.SolViewHolder> {
-    private List<SolData> sols = new ArrayList<>();
+    private List<SolData> sols;
+
+    public SolAdapter() {
+        this.sols = new ArrayList<>();
+    }
 
     @NonNull
     @Override
@@ -28,9 +34,14 @@ public class SolAdapter extends RecyclerView.Adapter<SolAdapter.SolViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SolViewHolder holder, int position) {
         SolData sol = sols.get(position);
-        holder.solNumberTextView.setText("Sol " + sol.getSolNumber());
-        holder.temperatureTextView.setText("Température: " + sol.getTemperature() + "°C");
-        holder.pressureTextView.setText("Pression: " + sol.getPressure() + " Pa");
+        holder.bind(sol);
+
+        // Set click listener
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), SolDetailActivity.class);
+            intent.putExtra(SolDetailActivity.EXTRA_SOL_DATA, sol);
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
@@ -44,15 +55,27 @@ public class SolAdapter extends RecyclerView.Adapter<SolAdapter.SolViewHolder> {
     }
 
     static class SolViewHolder extends RecyclerView.ViewHolder {
-        TextView solNumberTextView;
-        TextView temperatureTextView;
-        TextView pressureTextView;
+        private final TextView solNumberTextView;
+        private final TextView temperatureTextView;
+        private final TextView pressureTextView;
 
-        SolViewHolder(View itemView) {
+        public SolViewHolder(@NonNull View itemView) {
             super(itemView);
             solNumberTextView = itemView.findViewById(R.id.solNumberTextView);
             temperatureTextView = itemView.findViewById(R.id.temperatureTextView);
             pressureTextView = itemView.findViewById(R.id.pressureTextView);
+        }
+
+        public void bind(SolData sol) {
+            solNumberTextView.setText("Sol n°" + sol.getSolKey());
+            temperatureTextView.setText(String.format("Température : avg: %.2f min: %.2f max: %.2f",
+                    sol.getTemperature().getAverage(),
+                    sol.getTemperature().getMin(),
+                    sol.getTemperature().getMax()));
+            pressureTextView.setText(String.format("Pression : avg: %.2f min: %.2f max: %.2f",
+                    sol.getPressure().getAverage(),
+                    sol.getPressure().getMin(),
+                    sol.getPressure().getMax()));
         }
     }
 }

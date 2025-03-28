@@ -57,12 +57,45 @@ public class HomeActivity extends AppCompatActivity {
                         String solKey = response.getJSONArray("sol_keys").getString(i);
                         org.json.JSONObject solData = response.getJSONObject(solKey);
 
-                        // Extraire les données de température et de pression
-                        double temperature = solData.getJSONObject("AT").getDouble("av");
-                        double pressure = solData.getJSONObject("PRE").getDouble("av");
+                        // Create new SolData object
+                        SolData sol = new SolData(solKey);
 
-                        // Créer un nouvel objet SolData
-                        sols.add(new SolData(solKey, temperature, pressure));
+                        // Set temperature data
+                        org.json.JSONObject atData = solData.getJSONObject("AT");
+                        sol.setTemperature(new SolData.WeatherData(
+                                atData.getDouble("av"),
+                                atData.getDouble("mn"),
+                                atData.getDouble("mx")));
+
+                        // Set pressure data
+                        org.json.JSONObject preData = solData.getJSONObject("PRE");
+                        sol.setPressure(new SolData.WeatherData(
+                                preData.getDouble("av"),
+                                preData.getDouble("mn"),
+                                preData.getDouble("mx")));
+
+                        // Set wind speed data
+                        org.json.JSONObject hwsData = solData.getJSONObject("HWS");
+                        sol.setWindSpeed(new SolData.WeatherData(
+                                hwsData.getDouble("av"),
+                                hwsData.getDouble("mn"),
+                                hwsData.getDouble("mx")));
+
+                        // Set season data
+                        sol.setNorthernSeason(solData.getString("Northern_season"));
+                        sol.setSouthernSeason(solData.getString("Southern_season"));
+
+                        // Set most common wind direction
+                        org.json.JSONObject wdData = solData.getJSONObject("WD").getJSONObject("most_common");
+                        sol.setMostCommonWindDirection(new SolData.WindDirection(
+                                wdData.getDouble("compass_degrees"),
+                                wdData.getString("compass_point")));
+
+                        // Set UTC times
+                        sol.setFirstUTC(solData.getString("First_UTC"));
+                        sol.setLastUTC(solData.getString("Last_UTC"));
+
+                        sols.add(sol);
                     }
 
                     // Mise à jour de l'adaptateur
