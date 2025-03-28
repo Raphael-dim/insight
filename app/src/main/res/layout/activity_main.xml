@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:background="@android:color/black"
+    android:padding="32dp">
 
     <FrameLayout
         android:id="@+id/logoContainer"
@@ -20,8 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/ic_launcher_foreground"
-            android:padding="16dp"
-            android:tint="@android:color/white" />
+            android:padding="16dp"/>
 
     </FrameLayout>
 
@@ -32,6 +32,7 @@
         android:text="@string/quelle_m_t_o_sur_mars"
         android:textColor="@android:color/white"
         android:textSize="24sp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/logoContainer"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
